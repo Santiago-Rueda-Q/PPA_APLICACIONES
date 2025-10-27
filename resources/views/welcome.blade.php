@@ -17,7 +17,7 @@
             /* Estilos personalizados */
         </style>
     </head>
-    <body class="antialiased" style="background-image: url('{{ asset('images/FESC2.JPG') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+    <body class="antialiased" style="background-image: url('{{ asset('images/FESC.JPG') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
         <!-- Contenedor principal con imagen de fondo -->
         <div class="relative min-h-screen">
             <!-- Overlay para mejorar legibilidad -->
