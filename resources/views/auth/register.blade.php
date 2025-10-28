@@ -1,52 +1,89 @@
-<x-guest-layout>
-    <div class="min-h-screen flex items-center justify-center bg-cover bg-center"
-        style="background-image: url('{{ asset('images/FESC.JPG') }}');">
-        <div class="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-2xl w-full max-w-md">
-            <div class="text-center mb-6">
-                <img src="{{ asset('images/fesc-30.png') }}" alt="FESC" class="h-16 mx-auto mb-4">
-                <h2 class="text-2xl font-bold text-[#8E1616]">Pre-Registro FESC</h2>
-                <p class="text-sm text-gray-600 mt-1">Complete sus datos para solicitar acceso</p>
-            </div>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-            <form method="POST" action="{{ route('register') }}">
-                @csrf
+        <title>{{ config('app.name', 'Sistema de Tickets FESC') }}</title>
 
-                <div class="mb-4">
-                    <x-input-label for="name" :value="__('Nombre completo')" />
-                    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
-                                :value="old('name')" required autofocus />
-                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                </div>
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-                <div class="mb-4">
-                    <x-input-label for="email" :value="__('Correo institucional')" />
-                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
-                                :value="old('email')" required />
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                </div>
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body class="font-sans text-gray-900 antialiased">
+        <div class="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+            style="background-image: url('{{ asset('images/FESC.JPG') }}');">
+            <!-- Overlay institucional -->
+            <div class="absolute inset-0 bg-[#1D1616]/70"></div>
 
-                <div class="mb-4">
-                    <x-input-label for="password" :value="__('Contraseña')" />
-                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                </div>
+            <!-- Contenedor principal -->
+            <div class="relative z-10 w-full max-w-md bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl p-8 border border-[#D84040]">
 
-                <div class="mb-6">
-                    <x-input-label for="password_confirmation" :value="__('Confirmar contraseña')" />
-                    <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                                name="password_confirmation" required />
-                </div>
-
-                <x-primary-button class="w-full justify-center bg-[#8E1616] hover:bg-[#D84040]">
-                    {{ __('Enviar Preregistro') }}
-                </x-primary-button>
-
-                <div class="text-center mt-4">
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline hover:text-[#8E1616]">
-                        ¿Ya tiene cuenta? Inicie sesión
+                <!-- Logo y título -->
+                <div class="text-center mb-6">
+                    <a href="{{ route('welcome') }}">
+                        <img src="{{ asset('images/fesc-30.png') }}" alt="FESC" class="h-20 mx-auto mb-3 hover:scale-105 transition-transform">
                     </a>
+                    <h2 class="text-2xl font-bold text-[#8E1616]">Pre-Registro FESC</h2>
+                    <p class="text-sm text-gray-700 mt-1">Complete sus datos para solicitar acceso</p>
                 </div>
-            </form>
+
+                <!-- Formulario -->
+                <form method="POST" action="{{ route('register') }}" class="space-y-3">
+                    @csrf
+
+                    <!-- Nombre -->
+                    <div class="flex flex-col">
+                        <label for="name" class="text-[#1D1616] font-semibold mb-1">Nombre completo</label>
+                        <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
+                            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-800 focus:border-[#D84040] focus:ring focus:ring-[#D84040]/40 transition duration-200">
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    </div>
+
+                    <!-- Correo -->
+                    <div class="flex flex-col">
+                        <label for="email" class="text-[#1D1616] font-semibold mb-1">Correo institucional</label>
+                        <input id="email" type="email" name="email" value="{{ old('email') }}" required
+                            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-800 focus:border-[#D84040] focus:ring focus:ring-[#D84040]/40 transition duration-200">
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div class="flex flex-col">
+                        <label for="password" class="text-[#1D1616] font-semibold mb-1">Contraseña</label>
+                        <input id="password" type="password" name="password" required
+                            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-800 focus:border-[#D84040] focus:ring focus:ring-[#D84040]/40 transition duration-200">
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
+
+                    <!-- Confirmar contraseña -->
+                    <div class="flex flex-col">
+                        <label for="password_confirmation" class="text-[#1D1616] font-semibold mb-1">Confirmar contraseña</label>
+                        <input id="password_confirmation" type="password" name="password_confirmation" required
+                            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-800 focus:border-[#D84040] focus:ring focus:ring-[#D84040]/40 transition duration-200">
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    </div>
+
+                    <!-- Botón -->
+                    <div class="pt-2">
+                        <button type="submit"
+                            class="w-full py-3 rounded-lg font-semibold text-white bg-[#8E1616] hover:bg-[#D84040] transition duration-200 shadow-md">
+                            ENVIAR PREREGISTRO
+                        </button>
+                    </div>
+
+                    <!-- Link a login -->
+                    <div class="text-center mt-3">
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 hover:text-[#D84040] underline">
+                            ¿Ya tiene cuenta? Inicie sesión
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</x-guest-layout>
+    </body>
+</html>
