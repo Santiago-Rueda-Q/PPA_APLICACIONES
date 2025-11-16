@@ -11,13 +11,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
 
-            // Información básica
+            // Información
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            // Campos para roles institucionales
+            // Roles institucionales
             $table->string('role_name')->nullable();
             $table->string('area')->nullable();
             $table->boolean('is_active')->default(true);
