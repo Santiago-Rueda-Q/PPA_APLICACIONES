@@ -48,4 +48,18 @@ class User extends Authenticatable
             'role_id'
         );
     }
+    public function incidentesSolicitados()
+    {
+        return $this->hasMany(Incidente::class, 'solicitante_id');
+    }
+
+    public function incidentesAsignados()
+    {
+        return $this->hasMany(Incidente::class, 'asignado_a');
+    }
+
+    public function comentarios()
+    {
+        return $this->hasMany(ComentarioIncidente::class);
+    }
 }

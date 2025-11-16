@@ -134,27 +134,6 @@
                 </div>
             </div>
         @endif
-
-        <!-- Módulos -->
-        <div class="pt-2">
-            <p class="uppercase text-[10px] tracking-[0.15em] text-[var(--text)]/50 px-3 mb-2 font-bold">
-                Módulos
-            </p>
-            <div
-                class="mx-3 px-3 py-3 rounded-lg text-xs italic
-                        bg-gradient-to-br from-[var(--border)]/10 to-transparent
-                        border border-[var(--border)]/30
-                        text-[var(--text)]/60">
-                <div class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-[var(--accent)]/50" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>Próximamente…</span>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Footer: Cuenta / Cerrar sesión -->
@@ -181,8 +160,8 @@
             </x-slot>
 
             <x-slot name="content">
-                <x-dropdown-link :href="route('profile.edit')" class="flex items-center gap-2 group">
-                    <svg class="w-4 h-4 text-[var(--accent)] transition-transform duration-200 group-hover:scale-110"
+                <x-dropdown-link :href="route('profile.edit')" class="dropdown-link">
+                    <svg class="w-4 h-4 transition-transform duration-200 group-hover:scale-110"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -192,9 +171,11 @@
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"
-                        class="text-[var(--accent)] hover:text-white hover:bg-[var(--primary)]
-                               flex items-center gap-2 group transition-all">
+                    <x-dropdown-link
+                        :href="route('logout')"
+                        onclick="event.preventDefault(); this.closest('form').submit();"
+                        class="dropdown-link-danger"
+                    >
                         <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

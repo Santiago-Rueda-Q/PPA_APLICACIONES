@@ -5,6 +5,8 @@ use App\Http\Controllers\LegalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IncidenteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +17,6 @@ use App\Http\Controllers\UserManagementController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 /*
 |--------------------------------------------------------------------------
@@ -33,19 +31,44 @@ Route::prefix('legal')->name('legal.')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Authenticated Routes
+| Rutas Autenticadas
 |--------------------------------------------------------------------------
 */
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/notificaciones/count', [DashboardController::class, 'getNotificacionesCount'])
+        ->name('notificaciones.count');
+
+    // Incidentes
+    Route::resource('incidentes', IncidenteController::class);
+
+    // Rutas adicionales de incidentes
+    Route::post('incidentes/{incidente}/asignar', [IncidenteController::class, 'asignar'])
+        ->name('incidentes.asignar')
+        ->middleware('can:assign,incidente');
+
+    Route::post('incidentes/{incidente}/cambiar-estado', [IncidenteController::class, 'cambiarEstado'])
+        ->name('incidentes.cambiar-estado')
+        ->middleware('can:changeStatus,incidente');
+
+    Route::post('incidentes/{incidente}/comentar', [IncidenteController::class, 'comentar'])
+        ->name('incidentes.comentar')
+        ->middleware('can:addComment,incidente');
+
     // Profile
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('/', [ProfileController::class, 'update'])->name('update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+    });
 
     // Password
     Route::post('/password/verify', [PasswordController::class, 'verify'])->name('password.verify');
     Route::put('/password', [PasswordController::class, 'update'])->name('password.update');
 });
+
 /*
 |--------------------------------------------------------------------------
 | CONTROL DE USUARIOS (Solo SuperAdmin)

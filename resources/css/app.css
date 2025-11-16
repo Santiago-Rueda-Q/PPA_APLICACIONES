@@ -307,3 +307,53 @@ select option:checked {
 .active-user-row {
     transition: all 0.3s ease;
 }
+
+.dropdown-link {
+    @apply text-[var(--text)] hover:text-white hover:bg-[var(--primary)]
+           flex items-center gap-2 px-3 py-2 rounded-md transition-colors;
+}
+
+.dropdown-link-danger {
+    @apply text-[var(--accent)] hover:text-white hover:bg-[var(--primary)]
+           flex items-center gap-2 px-3 py-2 rounded-md transition-colors;
+}
+/* Forzar estilos de <x-dropdown-link> */
+.dropdown-link-danger,
+.dropdown-link-danger > a {
+    background-color: transparent !important;
+    color: var(--accent) !important;
+}
+
+.dropdown-link-danger:hover,
+.dropdown-link-danger:hover > a {
+    background-color: var(--primary) !important;
+    color: white !important;
+}
+
+.dropdown-link-danger svg {
+    color: var(--accent) !important;
+}
+
+.dropdown-link-danger:hover svg {
+    color: white !important;
+}
+/* Forzar estilos de <x-dropdown-link> para PERFIL */
+.dropdown-link,
+.dropdown-link > a {
+    background-color: transparent !important;
+    color: var(--text) !important;
+}
+
+.dropdown-link:hover,
+.dropdown-link:hover > a {
+    background-color: var(--primary) !important;
+    color: white !important;
+}
+
+.dropdown-link svg {
+    color: var(--accent) !important;
+}
+
+.dropdown-link:hover svg {
+    color: white !important;
+}

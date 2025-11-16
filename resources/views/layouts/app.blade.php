@@ -9,7 +9,7 @@
     <!-- Título y Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('images/ICONFESC.png?v=2') }}">
     <link rel="shortcut icon" href="{{ asset('images/ICONFESC.png?v=2') }}" type="image/png">
-    <title>{{ config('app.name', 'SystemPOA') }}</title>
+    <title>{{ config('app.name', 'TicketsFESC') }}</title>
 
     <!-- Tipografías -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -51,7 +51,7 @@
                             </svg>
                         </button>
                         <div class="text-sm text-[var(--text)] truncate">
-                            SystemPOA
+                            TicketsFESC
                         </div>
                         <div class="w-10"></div>
                     </div>
