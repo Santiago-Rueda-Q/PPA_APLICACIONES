@@ -124,7 +124,6 @@
 .theme-card { background-color: var(--card); }
 .theme-bd   { border-color:     var(--border); }
 
-/* Danger Zone Specific Styles */
 .danger-zone-border {
     border-color: var(--danger-border);
 }
@@ -281,7 +280,6 @@
     color: #4ade80;
 }
 
-/* Estilos mejorados para select con búsqueda */
 select {
     background-image: none;
 }
@@ -290,7 +288,6 @@ select:focus {
     outline: none;
 }
 
-/* Personalización del dropdown del select en navegadores webkit */
 select option {
     padding: 0.5rem 1rem;
     background-color: var(--card);
@@ -303,7 +300,6 @@ select option:checked {
     color: white;
 }
 
-/* Animación suave para las transiciones */
 .pending-user-card,
 .active-user-row {
     transition: all 0.3s ease;
@@ -318,7 +314,6 @@ select option:checked {
     @apply text-[var(--accent)] hover:text-white hover:bg-[var(--primary)]
            flex items-center gap-2 px-3 py-2 rounded-md transition-colors;
 }
-/* Forzar estilos de <x-dropdown-link> */
 .dropdown-link-danger,
 .dropdown-link-danger > a {
     background-color: transparent !important;
@@ -338,7 +333,6 @@ select option:checked {
 .dropdown-link-danger:hover svg {
     color: white !important;
 }
-/* Forzar estilos de <x-dropdown-link> para PERFIL */
 .dropdown-link,
 .dropdown-link > a {
     background-color: transparent !important;
