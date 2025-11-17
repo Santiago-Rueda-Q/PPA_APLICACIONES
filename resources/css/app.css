@@ -342,7 +342,7 @@ select option:checked {
 .dropdown-link,
 .dropdown-link > a {
     background-color: transparent !important;
-    color: var(--text) !important;
+    color: var(--accent) !important;
 }
 
 .dropdown-link:hover,
