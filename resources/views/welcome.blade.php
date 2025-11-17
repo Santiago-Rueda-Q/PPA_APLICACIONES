@@ -118,7 +118,6 @@
                 <!-- Footer -->
                 <div class="p-4 sm:p-6 text-center text-xs sm:text-sm text-gray-600">
                     <p>&copy; {{ date('Y') }} FESC - Fundación de Estudios Superiores Comfanorte</p>
-                    <p class="mt-2">Creador: Santiago Rueda Quintero</p>
                 </div>
             </div>
         </div>

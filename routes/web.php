@@ -57,6 +57,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('incidentes.comentar')
         ->middleware('can:addComment,incidente');
 
+    Route::get('/dashboard/exportar-pdf', [DashboardController::class, 'exportarPdf'])
+        ->name('dashboard.exportar-pdf')
+        ->middleware('role:superadmin|admin_infraestructura|director_programa');
+        
     // Profile
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/', [ProfileController::class, 'edit'])->name('edit');

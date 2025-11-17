@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Incidente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DashboardController extends Controller
 {
@@ -156,5 +157,49 @@ class DashboardController extends Controller
         $count = $this->getIncidentesSinAtender($user);
 
         return response()->json(['count' => $count]);
+    }
+
+    public function exportarPdf()
+    {
+        $user = Auth::user();
+
+        // Verificar permisos
+        if (!$user->hasAnyRole(['superadmin', 'admin_infraestructura', 'director_programa'])) {
+            abort(403, 'No tienes permisos para exportar reportes.');
+        }
+
+        // Obtener todos los incidentes según rol usando el método existente
+        $incidentes = $this->getBaseQuery($user)
+            ->with(['solicitante', 'asignado', 'categoria', 'salon.bloque'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Estadísticas
+        $estadisticas = [
+            'total' => $incidentes->count(),
+            'pendientes' => $incidentes->where('estado', 'pendiente')->count(),
+            'en_proceso' => $incidentes->where('estado', 'en_proceso')->count(),
+            'resueltos' => $incidentes->where('estado', 'resuelto')->count(),
+            'cerrados' => $incidentes->where('estado', 'cerrado')->count(),
+            'por_prioridad' => [
+                'urgente' => $incidentes->where('prioridad', 'urgente')->count(),
+                'alta' => $incidentes->where('prioridad', 'alta')->count(),
+                'media' => $incidentes->where('prioridad', 'media')->count(),
+                'baja' => $incidentes->where('prioridad', 'baja')->count(),
+            ]
+        ];
+
+        // Generar PDF
+        $pdf = Pdf::loadView('incidentes.pdf-reporte', compact('incidentes', 'estadisticas', 'user'))
+            ->setPaper('letter', 'portrait')
+            ->setOptions([
+                'isHtml5ParserEnabled' => true,
+                'isRemoteEnabled' => true,
+                'defaultFont' => 'sans-serif'
+            ]);
+
+        $filename = 'reporte-incidentes-' . now()->format('Y-m-d-His') . '.pdf';
+
+        return $pdf->download($filename);
     }
 }
