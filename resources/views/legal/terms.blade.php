@@ -12,7 +12,7 @@
                     Política del Sistema
                 </h2>
                 <p class="mt-1 text-sm text-[var(--text-muted)]">
-                    Términos y condiciones de uso de SystemPOA
+                    Términos y condiciones de uso de TicketFESC
                 </p>
             </div>
         </div>
@@ -55,7 +55,7 @@
                                 Aceptación de Términos
                             </h2>
                             <p class="text-[var(--text-secondary)] leading-relaxed">
-                                Al acceder y utilizar SystemPOA, usted acepta cumplir con estos términos y condiciones.
+                                Al acceder y utilizar TickeFESC, usted acepta cumplir con estos términos y condiciones.
                                 Este sistema está diseñado exclusivamente para uso institucional dentro de la Fundación
                                 de
                                 Estudios Superiores Comfanorte (FESC).
@@ -111,7 +111,7 @@
                                 Propiedad Intelectual
                             </h2>
                             <p class="text-[var(--text-secondary)] leading-relaxed">
-                                SystemPOA y todo su contenido son propiedad exclusiva de FESC. Queda prohibida la
+                                TicketFESC y todo su contenido son propiedad exclusiva de FESC. Queda prohibida la
                                 reproducción, distribución o uso no autorizado del sistema, su código fuente o cualquier
                                 componente del mismo.
                             </p>

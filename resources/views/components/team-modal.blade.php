@@ -93,7 +93,7 @@
                                 class="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)]
                                         flex items-center justify-center text-white font-bold text-lg shadow-md
                                         group-hover:scale-110 transition-transform duration-200">
-                                SP
+                                FE
                             </div>
                             <div class="flex-1">
                                 <h4
