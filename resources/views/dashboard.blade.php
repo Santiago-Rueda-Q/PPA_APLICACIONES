@@ -64,7 +64,7 @@
                 <div class="theme-card rounded-lg shadow-sm p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm text-muted">Total</p>
+                            <p class="text-sm text-[var(--text-secondary)]">Total</p>
                             <p class="text-3xl font-bold theme-text">{{ $estadisticas['total'] }}</p>
                         </div>
                         <div class="p-3 bg-gray-100 dark:bg-gray-700 rounded-full">
@@ -80,7 +80,7 @@
                 <div class="theme-card rounded-lg shadow-sm p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm text-muted">Pendientes</p>
+                            <p class="text-sm text-[var(--text-secondary)]">Pendientes</p>
                             <p class="text-3xl font-bold text-yellow-600">{{ $estadisticas['pendientes'] }}</p>
                         </div>
                         <div class="p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-full">
@@ -96,7 +96,7 @@
                 <div class="theme-card rounded-lg shadow-sm p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm text-muted">En Proceso</p>
+                            <p class="text-sm text-[var(--text-secondary)]">En Proceso</p>
                             <p class="text-3xl font-bold text-blue-600">{{ $estadisticas['en_proceso'] }}</p>
                         </div>
                         <div class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-full">
@@ -112,7 +112,7 @@
                 <div class="theme-card rounded-lg shadow-sm p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm text-muted">Resueltos</p>
+                            <p class="text-sm text-[var(--text-secondary)]">Resueltos</p>
                             <p class="text-3xl font-bold text-green-600">{{ $estadisticas['resueltos'] }}</p>
                         </div>
                         <div class="p-3 bg-green-100 dark:bg-green-900/30 rounded-full">
@@ -128,11 +128,11 @@
                 <div class="theme-card rounded-lg shadow-sm p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm text-muted">Cerrados</p>
+                            <p class="text-sm text-[var(--text-secondary)]">Cerrados</p>
                             <p class="text-3xl font-bold text-gray-600">{{ $estadisticas['cerrados'] }}</p>
                         </div>
                         <div class="p-3 bg-gray-100 dark:bg-gray-700 rounded-full">
-                            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M5 13l4 4L19 7" />
                             </svg>
@@ -191,7 +191,7 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         <p class="theme-text font-medium">{{ Str::limit($incidente->titulo, 40) }}</p>
-                                        <p class="text-sm text-muted">{{ $incidente->categoria->nombre }}</p>
+                                        <p class="text-sm text-[var(--text-secondary)]">{{ $incidente->categoria->nombre }}</p>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="theme-text">{{ $incidente->solicitante->name }}</span>
@@ -209,7 +209,7 @@
                                             {{ ucfirst(str_replace('_', ' ', $incidente->estado)) }}
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-muted">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
                                         {{ $incidente->created_at->diffForHumans() }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">

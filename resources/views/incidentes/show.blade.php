@@ -12,7 +12,7 @@
                     <h2 class="font-semibold text-xl theme-text leading-tight">
                         Incidente {{ $incidente->codigo }}
                     </h2>
-                    <p class="text-sm text-muted">Creado {{ $incidente->created_at->diffForHumans() }}</p>
+                    <p class="text-sm text-[var(--text-secondary)]">Creado {{ $incidente->created_at->diffForHumans() }}</p>
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
                         </div>
 
                         <div class="prose max-w-none theme-text">
-                            <p class="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+                            <p class="text-[var(--text-muted)] whitespace-pre-wrap text-center">
                                 {{ $incidente->descripcion }}</p>
                         </div>
 
@@ -93,8 +93,8 @@
                                     <div class="flex items-start gap-4 pb-4 border-b theme-bd last:border-0">
                                         <div
                                             class="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
+                                            <svg class="w-5 h-5 text-white" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M13 10V3L4 14h7v7l9-11h-7z" />
                                             </svg>
@@ -104,9 +104,9 @@
                                                 <span
                                                     class="font-medium theme-text">{{ $historial->usuario->name }}</span>
                                                 <span
-                                                    class="text-xs text-muted">{{ $historial->created_at->diffForHumans() }}</span>
+                                                    class="text-xs text-[var(--text-secondary)]">{{ $historial->created_at->diffForHumans() }}</span>
                                             </div>
-                                            <p class="text-sm text-muted">
+                                            <p class="text-sm text-[var(--text-secondary)]">
                                                 Cambió de
                                                 <span
                                                     class="font-semibold">{{ ucfirst(str_replace('_', ' ', $historial->estado_anterior)) }}</span>
@@ -140,7 +140,7 @@
                                 <div class="flex gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                                     <div class="flex-shrink-0">
                                         <div
-                                            class="w-10 h-10 rounded-full bg-[var(--primary)] text-white flex items-center justify-center font-semibold">
+                                            class="w-10 h-10 rounded-full bg-[var(--primary)] black-text flex items-center justify-center font-semibold">
                                             {{ substr($comentario->usuario->name, 0, 1) }}
                                         </div>
                                     </div>
@@ -162,7 +162,7 @@
                                     </div>
                                 </div>
                             @empty
-                                <p class="text-center text-muted py-8">No hay comentarios aún</p>
+                                <p class="text-center text-[var(--text-secondary)] py-8">No hay comentarios aún</p>
                             @endforelse
                         </div>
 
@@ -172,8 +172,8 @@
                                 class="border-t theme-bd pt-4">
                                 @csrf
                                 <textarea name="comentario" rows="3" placeholder="Agregar un comentario..." required
-                                    class="w-full rounded-lg border theme-bd px-4 py-3 theme-text
-                                                 focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"></textarea>
+                                    class="w-full rounded-lg border text-black px-4 py-3
+                                            focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"></textarea>
                                 <div class="flex items-center justify-between mt-3">
                                     @if (auth()->user()->hasAnyRole(['superadmin', 'admin_infraestructura', 'operativo_servicio']))
                                         <label class="flex items-center gap-2">
@@ -202,12 +202,12 @@
                         <h3 class="text-lg font-semibold theme-text mb-4">Detalles</h3>
                         <dl class="space-y-3">
                             <div>
-                                <dt class="text-sm font-medium text-muted">Código</dt>
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Código</dt>
                                 <dd class="text-sm font-mono font-semibold theme-text mt-1">{{ $incidente->codigo }}
                                 </dd>
                             </div>
                             <div>
-                                <dt class="text-sm font-medium text-muted">Categoría</dt>
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Categoría</dt>
                                 <dd class="mt-1">
                                     <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium"
                                         style="background-color: {{ $incidente->categoria->color }}22; color: {{ $incidente->categoria->color }}">
@@ -216,7 +216,7 @@
                                 </dd>
                             </div>
                             <div>
-                                <dt class="text-sm font-medium text-muted">Prioridad</dt>
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Prioridad</dt>
                                 <dd class="mt-1">
                                     <span
                                         class="px-2 py-1 text-xs font-semibold rounded-full {{ $incidente->prioridad_badge_color }}">
@@ -226,22 +226,22 @@
                             </div>
                             @if ($incidente->salon)
                                 <div>
-                                    <dt class="text-sm font-medium text-muted">Salón</dt>
+                                    <dt class="text-sm font-medium text-[var(--text-secondary)]">Salón</dt>
                                     <dd class="text-sm theme-text mt-1 font-semibold">
                                         {{ $incidente->salon->codigo }} - {{ $incidente->salon->bloque->nombre }}
                                     </dd>
-                                    <dd class="text-xs text-muted">Piso {{ $incidente->salon->piso }} •
+                                    <dd class="text-xs text-[var(--text-secondary)]">Piso {{ $incidente->salon->piso }} •
                                         {{ ucfirst($incidente->salon->tipo) }}</dd>
                                 </div>
                             @endif
                             <div>
-                                <dt class="text-sm font-medium text-muted">Solicitante</dt>
-                                <dd class="text-sm theme-text mt-1">{{ $incidente->solicitante->name }}</dd>
-                                <dd class="text-xs text-muted">{{ $incidente->solicitante->email }}</dd>
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Solicitante</dt>
+                                <dd class="text-sm text-[var(--text-secondary)] mt-1">{{ $incidente->solicitante->name }}</dd>
+                                <dd class="text-xs text-[var(--text-secondary)]">{{ $incidente->solicitante->email }}</dd>
                             </div>
                             @if ($incidente->asignado)
                                 <div>
-                                    <dt class="text-sm font-medium text-muted">Asignado a</dt>
+                                    <dt class="text-sm font-medium text-[var(--text-secondary)]">Asignado a</dt>
                                     <dd class="text-sm theme-text mt-1">{{ $incidente->asignado->name }}</dd>
                                 </div>
                             @endif
@@ -253,20 +253,20 @@
                         <h3 class="text-lg font-semibold theme-text mb-4">Cronología</h3>
                         <dl class="space-y-3 text-sm">
                             <div>
-                                <dt class="text-muted">Creado</dt>
+                                <dt class="text-[var(--text-secondary)]">Creado</dt>
                                 <dd class="theme-text font-medium mt-1">
                                     {{ $incidente->created_at->format('d/m/Y H:i') }}</dd>
                             </div>
                             @if ($incidente->fecha_asignacion)
                                 <div>
-                                    <dt class="text-muted">Asignado</dt>
+                                    <dt class="text-[var(--text-secondary)]">Asignado</dt>
                                     <dd class="theme-text font-medium mt-1">
                                         {{ $incidente->fecha_asignacion->format('d/m/Y H:i') }}</dd>
                                 </div>
                             @endif
                             @if ($incidente->fecha_inicio_atencion)
                                 <div>
-                                    <dt class="text-muted">Inicio Atención</dt>
+                                    <dt class="text-[var(--text-secondary)]">Inicio Atención</dt>
                                     <dd class="theme-text font-medium mt-1">
                                         {{ $incidente->fecha_inicio_atencion->format('d/m/Y H:i') }}</dd>
                                 </div>
@@ -288,7 +288,7 @@
                             <form method="POST" action="{{ route('incidentes.asignar', $incidente) }}">
                                 @csrf
                                 <select name="asignado_a" required
-                                    class="w-full rounded-lg border theme-bd px-4 py-2 theme-text mb-3">
+                                    class="w-full rounded-lg border theme-bd px-4 py-2 text-black mb-3">
                                     <option value="">Seleccionar operativo</option>
                                     @foreach ($operativos as $operativo)
                                         <option value="{{ $operativo->id }}"
@@ -298,7 +298,7 @@
                                     @endforeach
                                 </select>
                                 <textarea name="observacion" rows="2" placeholder="Observaciones (opcional)"
-                                    class="w-full rounded-lg border theme-bd px-4 py-2 theme-text mb-3"></textarea>
+                                    class="w-full rounded-lg border theme-bd px-4 py-2 text-black mb-3"></textarea>
                                 <button type="submit"
                                     class="w-full px-4 py-2 bg-[var(--primary)] text-white rounded-lg hover:bg-[var(--accent)] transition-colors">
                                     Asignar
@@ -313,7 +313,7 @@
                             <form method="POST" action="{{ route('incidentes.cambiar-estado', $incidente) }}">
                                 @csrf
                                 <select name="estado" required
-                                    class="w-full rounded-lg border theme-bd px-4 py-2 theme-text mb-3">
+                                    class="w-full rounded-lg border theme-bd px-4 py-2 text-black mb-3">
                                     <option value="pendiente" {{ $incidente->estado == 'pendiente' ? 'selected' : '' }}>
                                         Pendiente</option>
                                     <option value="asignado" {{ $incidente->estado == 'asignado' ? 'selected' : '' }}>

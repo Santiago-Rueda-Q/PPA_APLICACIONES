@@ -28,12 +28,12 @@
                     <div>
                         <input type="text" name="search" placeholder="Buscar por código o título..."
                             value="{{ request('search') }}"
-                            class="w-full rounded-lg border theme-bd px-4 py-2 theme-text focus:ring-2 focus:ring-[var(--primary)]">
+                            class="w-full rounded-lg border theme-bd px-4 py-2 text-black focus:ring-2 focus:ring-[var(--primary)]">
                     </div>
 
                     <!-- Estado -->
                     <div>
-                        <select name="estado" class="w-full rounded-lg border theme-bd px-4 py-2 theme-text">
+                        <select name="estado" class="w-full rounded-lg border theme-bd px-4 py-2 text-black">
                             <option value="">Todos los estados</option>
                             <option value="pendiente" {{ request('estado') === 'pendiente' ? 'selected' : '' }}>
                                 Pendiente</option>
@@ -50,7 +50,7 @@
 
                     <!-- Prioridad -->
                     <div>
-                        <select name="prioridad" class="w-full rounded-lg border theme-bd px-4 py-2 theme-text">
+                        <select name="prioridad" class="w-full rounded-lg border theme-bd px-4 py-2 text-black">
                             <option value="">Todas las prioridades</option>
                             <option value="urgente" {{ request('prioridad') === 'urgente' ? 'selected' : '' }}>Urgente
                             </option>
@@ -65,7 +65,7 @@
 
                     <!-- Categoría -->
                     <div>
-                        <select name="categoria" class="w-full rounded-lg border theme-bd px-4 py-2 theme-text">
+                        <select name="categoria" class="w-full rounded-lg border theme-bd px-4 py-2 text-black">
                             <option value="">Todas las categorías</option>
                             @foreach ($categorias as $categoria)
                                 <option value="{{ $categoria->id }}"
@@ -150,7 +150,7 @@
                                             {{ $incidente->asignado?->name ?? 'Sin asignar' }}
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-muted">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
                                         {{ $incidente->created_at->format('d/m/Y H:i') }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">

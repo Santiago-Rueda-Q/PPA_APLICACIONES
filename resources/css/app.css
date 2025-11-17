@@ -12,6 +12,7 @@
 /80 o /85 → usa var(--text-secondary) */
 
 /* LIGHT */
+
 :root,
 :root[data-theme='light']{
     --bg: #EEEEEE;

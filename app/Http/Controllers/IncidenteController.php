@@ -10,6 +10,7 @@ use App\Models\HistorialEstado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\ComentarioIncidente;
 
 class IncidenteController extends Controller
 {
@@ -211,9 +212,9 @@ class IncidenteController extends Controller
         if ($user->hasRole('director_programa')) {
             return $query->where(function ($q) use ($user) {
                 $q->where('solicitante_id', $user->id)
-                  ->orWhereHas('solicitante', function ($subQ) use ($user) {
-                      $subQ->where('area', $user->area);
-                  });
+                    ->orWhereHas('solicitante', function ($subQ) use ($user) {
+                        $subQ->where('area', $user->area);
+                    });
             });
         }
 
@@ -222,5 +223,25 @@ class IncidenteController extends Controller
         }
 
         return $query->whereRaw('1 = 0');
+    }
+
+    public function comentar(Request $request, Incidente $incidente)
+    {
+        $this->authorize('addComment', $incidente);
+
+        $validated = $request->validate([
+            'comentario' => 'required|string',
+            'es_interno' => 'nullable|boolean',
+        ]);
+
+        $validated['incidente_id'] = $incidente->id;
+        $validated['user_id'] = Auth::id();
+        $validated['es_interno'] = $validated['es_interno'] ?? false;
+
+        ComentarioIncidente::create($validated);
+
+        return redirect()
+            ->back()
+            ->with('success', 'Comentario agregado exitosamente');
     }
 }
